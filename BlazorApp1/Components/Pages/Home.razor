@@ -1,6 +1,8 @@
 ﻿@using BlazorApp1.Components.Layout.SearchBar
 @using BlazorApp1.Components.Layout.icons
 @using BlazorApp1.Components.Layout.Carousel
+@using BlazorApp1.Components.Layout.Stripe
+@using BlazorApp1.Components.Layout.SmallCard
 
 @page "/"
 
@@ -24,3 +26,19 @@
     <Carousel
         Images="@(new string[] { "/img/cel1.webp", "/img/cel2.webp", "/img/cel3.webp", "/img/cel4.webp", "/img/cel5.webp", "/img/cel6.webp" })" />
 </div>
+
+<div>
+    <Stripe />
+</div>
+
+<div class="px-4 py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 items-center justify-center">
+    @foreach (var category in categorias)
+    {
+        <SmallCard Category="@category" />
+    }
+</div>
+
+
+@code {
+    private string[] categorias = { "Computadores", "Celulares", "Tablets", "Acessórios" };
+}
