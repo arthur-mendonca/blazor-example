@@ -1,0 +1,56 @@
+<div class="relative w-full overflow-hidden h-[500px] bg-gray-800">
+    <div class="flex items-center h-full">
+        <!-- Botão anterior funcional -->
+        <button class="z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80" @onclick="PreviousImage">
+            &lt;
+        </button>
+
+        <!-- Imagem atual -->
+        <div class="flex-1 h-full">
+            @if (Images.Any())
+            {
+                <img src="@Images[CurrentIndex]" class="object-contain w-full h-full mx-auto" alt="Carousel image" />
+            }
+        </div>
+
+        <!-- Botão próximo funcional -->
+        <button class="z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80" @onclick="NextImage">
+            &gt;
+        </button>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        @for (int i = 0; i < Images.Length; i++)
+        {
+            <button @onclick="@(() => GoToIndex(i))"
+                class="w-3 h-3 rounded-full @(i == CurrentIndex ? "bg-white" : "bg-gray-400")">
+            </button>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string[] Images { get; set; } = Array.Empty<string>();
+
+    private int CurrentIndex = 0;
+
+    private void NextImage()
+    {
+        if (Images.Length == 0) return;
+        CurrentIndex = (CurrentIndex + 1) % Images.Length;
+    }
+
+    private void PreviousImage()
+    {
+        if (Images.Length == 0) return;
+        CurrentIndex = (CurrentIndex - 1 + Images.Length) % Images.Length;
+    }
+
+    private void GoToIndex(int index)
+    {
+        if (Images.Length == 0) return;
+        CurrentIndex = index;
+    }
+}

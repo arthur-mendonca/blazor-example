@@ -1,7 +1,26 @@
-﻿@page "/"
+﻿@using BlazorApp1.Components.Layout.SearchBar
+@using BlazorApp1.Components.Layout.icons
+@using BlazorApp1.Components.Layout.Carousel
+
+@page "/"
 
 <PageTitle>E-commerce</PageTitle>
 
-<h1>Bem-vindo ao E-commerce</h1>
 
-<p>Este é um app de e-commerce </p>
+<nav class="flex items-center bg-[#009FE3] px-8 ">
+    <h1 class="text-3xl text-white font-bold">Shop+</h1>
+
+    <SearchBar />
+
+    <div class="flex gap-4">
+        <UserIcon Class="text-[#49267F] w-8 h-8 cursor-pointer" />
+
+        <CartIcon Class="text-[#49267F] w-8 h-8 cursor-pointer" />
+    </div>
+
+</nav>
+
+<div>
+    <Carousel
+        Images="@(new string[] { "/img/cel1.webp", "/img/cel2.webp", "/img/cel3.webp", "/img/cel4.webp", "/img/cel5.webp", "/img/cel6.webp" })" />
+</div>
