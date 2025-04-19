@@ -7,6 +7,8 @@
 @using BlazorApp1.Components.Layout.Footer
 
 
+
+
 @page "/"
 
 <PageTitle>E-commerce</PageTitle>
@@ -20,7 +22,9 @@
     <div class="flex gap-4">
         <UserIcon Class="text-[#49267F] w-8 h-8 cursor-pointer" />
 
-        <CartIcon Class="text-[#49267F] w-8 h-8 cursor-pointer" />
+        <NavLink href="cart">
+            <CartIcon Class=" text-[#49267F] w-8 h-8 cursor-pointer" />
+        </NavLink>
     </div>
 
 </nav>
