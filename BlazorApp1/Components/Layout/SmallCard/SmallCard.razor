@@ -1,26 +1,19 @@
-@* <div class=" border rounded shadow">
-    <h3 class="text-xl font-semibold">@Category</h3>
-    <p></p>
-</div> *@
+<div class="bg-gray-100 h-80 w-80 border border-gray-200 rounded-lg shadow-sm ">
 
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-[#2B3033] dark:border-gray-700">
-    <a href="#">
-        <img class="rounded-t-lg" src="/img/laptop.png" alt="" />
-    </a>
+    <div class="">
+        <img class="rounded-lg w-full max-h-48  object-contain" src=@Image alt="" />
+    </div>
 
     <div class="p-4">
         <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 class="mb-2 text-black text-2xl font-bold tracking-tight text-gray-900 ">
                 @Category
             </h5>
         </a>
 
-        @* <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-            acquisitions of 2021 so far, in reverse chronological order.</p> *@
-
         <a href="#"
             class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Ver ofertas
+            Ver categoria
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,4 +26,7 @@
 @code {
     [Parameter]
     public string Category { get; set; }
+
+    [Parameter]
+    public string Image { get; set; }
 }

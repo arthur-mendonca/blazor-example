@@ -3,6 +3,8 @@
 @using BlazorApp1.Components.Layout.Carousel
 @using BlazorApp1.Components.Layout.Stripe
 @using BlazorApp1.Components.Layout.SmallCard
+@using BlazorApp1.Components.Layout.BigCard
+
 
 @page "/"
 
@@ -31,14 +33,67 @@
     <Stripe />
 </div>
 
-<div class="px-4 py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 items-center justify-items-center">
-    @foreach (var category in categorias)
-    {
-        <SmallCard Category="@category" />
-    }
-</div>
+<section class="mx-auto">
+
+    <div class="py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 items-center justify-items-center">
+        @foreach (var categoria in categorias)
+        {
+            <SmallCard Category="@categoria.Nome" Image="@categoria.Imagem" />
+        }
+    </div>
+
+    <div class="py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-items-center">
+        @foreach (var promocao in promocoes)
+        {
+            <BigCard Title="@promocao.Nome" Image="@promocao.Imagem" Description="@promocao.Descricao"
+                Link="@promocao.Link" />
+        }
+
+    </div>
+
+</section>
 
 
 @code {
-    private string[] categorias = { "Computadores", "Celulares", "Tablets", "Acessórios" };
+    public class CategoriaItem
+    {
+        public string Nome { get; set; }
+        public string Imagem { get; set; }
+    };
+
+    private CategoriaItem[] categorias = new CategoriaItem[]
+    {
+new CategoriaItem { Nome = "Computadores", Imagem = "/img/laptop.png" },
+new CategoriaItem { Nome = "Celulares", Imagem = "/img/cel-mockup.png" },
+new CategoriaItem { Nome = "Tablets", Imagem = "/img/tablet-mockup.png" },
+new CategoriaItem { Nome = "Acessórios", Imagem = "/img/mouse-mockup.png" }
+    };
+
+    public class PromocaoItem
+    {
+        public string Nome { get; set; }
+        public string Imagem { get; set; }
+        public string Descricao { get; set; }
+        public string Link { get; set; }
+    };
+    private PromocaoItem[] promocoes = new PromocaoItem[]
+    {
+new PromocaoItem {
+Nome = "Dia dos Pais",
+Imagem = "/img/pais.png",
+Descricao = "Promoções de Dia dos Pais",
+Link = "#"
+},
+new PromocaoItem {
+Nome = "Promoções de TVs",
+Imagem = "/img/tv.png",
+Descricao = "Veja TVs em promoção",
+Link = "#"
+},
+new PromocaoItem {
+Nome = "Eletrodomésticos",
+Imagem = "/img/eletrodom.png",
+Descricao = "Veja eletrodomésticos em promoção",
+Link = "#" }
+    };
 }
