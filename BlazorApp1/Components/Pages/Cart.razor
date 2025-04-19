@@ -1,6 +1,96 @@
+@using BlazorApp1.Components.Layout.Footer
+
 @page "/cart"
 
 <PageTitle>Carrinho - Shop+</PageTitle>
 
+<div class="flex flex-col min-h-screen bg-[#e1f5fd]">
 
-<h2 class="text-2xl font-bold mb-4">Seu Carrinho</h2>
+    <div class="container mx-auto px-4 py-8 flex-grow">
+        <div class=" border-2 rounded-lg bg-white shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Seu Carrinho</h2>
+
+            @if (cartItems.Count == 0)
+            {
+                <p class="text-center text-gray-700">Seu carrinho está vazio.</p>
+                <button class="bg-blue-500 text-white px-4 py-2 mt-4 rounded">
+                    Continuar Comprando
+                </button>
+            }
+            else
+            {
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="py-2 px-4 text-left">Produto</th>
+                                <th class="py-2 px-4 text-left">Preço</th>
+                                <th class="py-2 px-4 text-center">Quantidade</th>
+                                <th class="py-2 px-4 text-left">Total</th>
+                                <th class="py-2 px-4 text-center">Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in cartItems)
+                            {
+                                <tr class="border-t">
+                                    <td class="py-2 px-4">@item.Name</td>
+                                    <td class="py-2 px-4">R$ @item.Price.ToString("F2")</td>
+                                    <td class="py-2 px-4 text-center">
+                                        <input type="number" min="1" class="w-16 text-center border rounded"
+                                            @bind="item.Quantity" @bind:event="oninput" />
+                                    </td>
+                                    <td class="py-2 px-4">R$ @(item.Price* item.Quantity)</td>
+                                    <td class="py-2 px-4 text-center">
+                                        <button class="bg-red-500 text-white px-2 py-1 rounded"
+                                            @onclick="() => RemoveItem(item)">
+                                            Remover
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4 flex flex-col md:flex-row md:justify-between items-center">
+                    <h3 class="text-xl font-bold">Total: R$ @TotalPrice.ToString("F2")</h3>
+                    <button class="bg-green-500 text-white px-4 py-2 mt-4 md:mt-0 rounded" @onclick="FinalizePurchase">
+                        Finalizar Compra
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <Footer />
+</div>
+
+@code {
+    private List<CartItem> cartItems = new List<CartItem>
+{
+new CartItem { Id = 1, Name = "Produto 1", Price = 100, Quantity = 1 },
+new CartItem { Id = 2, Name = "Produto 2", Price = 200, Quantity = 2 }
+};
+
+    private decimal TotalPrice => cartItems.Sum(item => item.Price * item.Quantity);
+
+    private void RemoveItem(CartItem item)
+    {
+        cartItems.Remove(item);
+    }
+    private void FinalizePurchase()
+    {
+        // Implemente aqui a lógica de finalização de compra.
+        Console.WriteLine("Compra finalizada");
+    }
+
+    public class CartItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+    }
+}
