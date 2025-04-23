@@ -1,0 +1,42 @@
+@using BlazorApp1.Components.Layout.Footer
+@using Microsoft.AspNetCore.Components
+
+@page "/produto/{id:int}"
+
+<PageTitle>Produto @id</PageTitle>
+
+<div class="bg-[#e1f5fd] w-full ">
+    <div class="w-[1200px] w-full items-center flex flex-col min-h-screen ">
+        <div class="my-10 mx-8 lg:mx-0 flex-grow p-10 border-2 border-[#009FE3] rounded-xl">
+            <h1 class="text-3xl font-bold mb-4">Detalhes do Produto</h1>
+            <p class="mb-2">ID do produto: @id</p>
+
+            <div class="mb-4 p-10 rounded-xl bg-[#009FE3]">
+                <img src="/img/cel3.webp" alt="Imagem do produto" class="w-full max-w-md mx-auto" />
+            </div>
+
+            <div class="mb-4">
+                <h2 class="text-2xl font-semibold mb-2">Descrição</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. Nulla
+                    facilisi.
+                    Duis ut nisl a sem viverra varius.</p>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="text-2xl font-semibold mb-2">Preço</h2>
+                <p class="text-xl text-green-600 font-bold">R$ 199,99</p>
+            </div>
+
+            <div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+}
