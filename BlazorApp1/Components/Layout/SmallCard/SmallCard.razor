@@ -1,5 +1,7 @@
 @using Microsoft.AspNetCore.Components
 @inject NavigationManager NavigationManager
+@using System.Globalization
+@using System.Text
 
 <div class="bg-gray-100 h-80 w-80 border border-gray-200 rounded-lg shadow-sm ">
 
@@ -14,7 +16,7 @@
             </h5>
         </div>
 
-        <NavLink href="@($"/produtos/{Category.ToLower()}")">
+        <NavLink href="@($"/produtos/{RemoveAccents(Category).ToLower()}")">
             <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700
         rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600
         dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -36,5 +38,24 @@
 
     [Parameter]
     public string Image { get; set; }
+
+    private string RemoveAccents(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return text;
+
+        var normalizedString = text.Normalize(NormalizationForm.FormD);
+        var stringBuilder = new StringBuilder();
+
+        foreach (var c in normalizedString)
+        {
+            var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+            {
+                stringBuilder.Append(c);
+            }
+        }
+        return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+    }
 
 }
