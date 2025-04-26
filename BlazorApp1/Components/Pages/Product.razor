@@ -1,18 +1,21 @@
+@using BlazorApp1.Models
+@using System.Linq
 @using BlazorApp1.Components.Layout.Footer
 @using Microsoft.AspNetCore.Components
+@using BlazorApp1.Services
 
-@page "/produto/{id:int}"
+@page "/produto/{Id:int}"
 
-<PageTitle>Produto @id</PageTitle>
+<PageTitle>Produto @Id</PageTitle>
 
 <div class="bg-[#e1f5fd] w-full ">
     <div class="w-[1200px] w-full items-center flex flex-col min-h-screen ">
         <div class="my-10 mx-8 lg:mx-0 flex-grow p-10 border-2 border-[#009FE3] rounded-xl">
             <h1 class="text-3xl font-bold mb-4">Detalhes do Produto</h1>
-            <p class="mb-2">ID do produto: @id</p>
+            <p class="mb-2">@produto.Nome</p>
 
             <div class="mb-4 p-10 rounded-xl bg-[#009FE3]">
-                <img src="/img/cel3.webp" alt="Imagem do produto" class="w-full max-w-md mx-auto" />
+                <img src="@produto.Imagem" alt="Imagem do produto" class="w-full max-w-md mx-auto" />
             </div>
 
             <div class="mb-4">
@@ -38,5 +41,17 @@
 
 @code {
     [Parameter]
-    public int id { get; set; }
+    public int Id { get; set; }
+
+    private Produto produto;
+
+    [Inject]
+    public ProdutoService ProdutoService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        produto = ProdutoService.GetProdutoById(Id);
+    }
+
+
 }
