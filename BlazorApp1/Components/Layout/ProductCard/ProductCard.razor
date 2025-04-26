@@ -1,0 +1,15 @@
+@using Microsoft.AspNetCore.Components
+@using BlazorApp1.Models
+
+<NavLink href="@($"/produto/{Produto.Id}")" class="no-underline text-current">
+    <div class="border p-4 rounded-lg shadow hover:shadow-lg transition cursor-pointer">
+        <img src="@Produto.Imagem" alt="@Produto.Nome" class="w-full max-h-48 object-contain mb-4" />
+        <h3 class="text-xl font-bold mb-2">@Produto.Nome</h3>
+        <p class="text-lg font-semibold text-green-600">R$ @Produto.Preco</p>
+    </div>
+</NavLink>
+
+@code {
+    [Parameter]
+    public Produto Produto { get; set; }
+}
