@@ -1,0 +1,17 @@
+@using BlazorApp1.Components.Layout.SearchBar
+@using BlazorApp1.Components.Layout.icons
+
+<nav class="flex items-center bg-[#009FE3] px-8 ">
+    <h1 class="text-3xl text-white font-bold">Shop+</h1>
+
+    <SearchBar />
+
+    <div class="flex gap-4">
+        <UserIcon Class="text-[#49267F] w-8 h-8 cursor-pointer" />
+
+        <NavLink href="cart">
+            <CartIcon Class=" text-[#49267F] w-8 h-8 cursor-pointer" />
+        </NavLink>
+    </div>
+
+</nav>
