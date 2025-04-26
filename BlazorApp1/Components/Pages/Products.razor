@@ -1,0 +1,30 @@
+@page "/produtos/{categoria}"
+
+<PageTitle>Categoria @categoria</PageTitle>
+
+<div>
+    Esta é a @categoria.
+</div>
+
+
+@code {
+    [Parameter]
+    public string categoria { get; set; }
+
+    private List<Produto> produtos = new List<Produto>
+{
+new Produto { Nome = "Celular 1", Preco = 1999.99m, Imagem = "/img/cel1.webp" },
+new Produto { Nome = "Celular 2", Preco = 2999.99m, Imagem = "/img/cel2.webp" },
+new Produto { Nome = "Celular 3", Preco = 3999.99m, Imagem = "/img/cel3.webp" },
+new Produto { Nome = "Celular 4", Preco = 4999.99m, Imagem = "/img/cel4.webp" },
+new Produto { Nome = "Celular 5", Preco = 5999.99m, Imagem = "/img/cel5.webp" },
+new Produto { Nome = "Celular 6", Preco = 6999.99m, Imagem = "/img/cel6.webp" }
+};
+
+    public class Produto
+    {
+        public string Nome { get; set; }
+        public decimal Preco { get; set; }
+        public string Imagem { get; set; }
+    }
+}
