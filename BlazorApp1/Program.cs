@@ -1,6 +1,11 @@
 using BlazorApp1.Components;
+using BlazorApp1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddSingleton<ProdutoService>();
+
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
