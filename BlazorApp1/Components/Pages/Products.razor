@@ -1,9 +1,31 @@
+@using BlazorApp1.Components.Layout.ProductCard
+@using BlazorApp1.Models
+@using BlazorApp1.Services
+
+
+
 @page "/produtos/{categoria}"
 
 <PageTitle>Categoria @categoria</PageTitle>
 
-<div>
+<div class="container mx-auto p-4">
     Esta é a @categoria.
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @if (produtos != null && produtos.Any())
+        {
+            @foreach (var produto in produtos)
+            {
+                <ProductCard Produto="produto" />
+            }
+        }
+        else
+        {
+            <p>Nenhum produto encontrado.</p>
+        }
+    </div>
+
 </div>
 
 
@@ -11,20 +33,14 @@
     [Parameter]
     public string categoria { get; set; }
 
-    private List<Produto> produtos = new List<Produto>
-{
-new Produto { Nome = "Celular 1", Preco = 1999.99m, Imagem = "/img/cel1.webp" },
-new Produto { Nome = "Celular 2", Preco = 2999.99m, Imagem = "/img/cel2.webp" },
-new Produto { Nome = "Celular 3", Preco = 3999.99m, Imagem = "/img/cel3.webp" },
-new Produto { Nome = "Celular 4", Preco = 4999.99m, Imagem = "/img/cel4.webp" },
-new Produto { Nome = "Celular 5", Preco = 5999.99m, Imagem = "/img/cel5.webp" },
-new Produto { Nome = "Celular 6", Preco = 6999.99m, Imagem = "/img/cel6.webp" }
-};
+    private List<Produto> produtos;
 
-    public class Produto
+    [Inject]
+    public ProdutoService ProdutoService { get; set; }
+
+    protected override void OnInitialized()
     {
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public string Imagem { get; set; }
+
+        produtos = ProdutoService.GetProdutos();
     }
 }
