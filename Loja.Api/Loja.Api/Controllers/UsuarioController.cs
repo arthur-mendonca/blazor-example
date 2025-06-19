@@ -1,21 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Loja.Models;
 using Loja.DTO;
+using Loja.Infra.Data;
 
 [ApiController]
 [Route("api/[controller]")]
 public class UsuarioController : ControllerBase
 {
-    // Lista temporária de usuários (depois substituir por banco de dados)
-    private static List<Usuario> usuarios = new List<Usuario>
+    private readonly LojaDbContext _context;
+
+    public UsuarioController(LojaDbContext context)
     {
-        new Usuario { Id = 1, Nome = "Admin", Email = "admin@loja.com", Senha = "123456" }
-    };
+        _context = context;
+    }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginDTO loginDto)
+    public async Task<IActionResult> Login(LoginDTO loginDto)
     {
-        var usuario = usuarios.FirstOrDefault(u =>
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u =>
             u.Email == loginDto.Email && u.Senha == loginDto.Senha && u.Ativo);
 
         if (usuario == null)
@@ -23,7 +26,6 @@ public class UsuarioController : ControllerBase
             return Unauthorized(new { message = "Email ou senha inválidos" });
         }
 
-        // Retorna dados do usuário sem a senha
         var usuarioDto = new UsuarioDTO
         {
             Id = usuario.Id,
@@ -41,27 +43,24 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost("registro")]
-    public IActionResult Registro(Usuario usuario)
+    public async Task<IActionResult> Registro(Usuario usuario)
     {
-        // Verifica se email já existe
-        if (usuarios.Any(u => u.Email == usuario.Email))
+        if (await _context.Usuarios.AnyAsync(u => u.Email == usuario.Email))
         {
             return BadRequest(new { message = "Email já cadastrado" });
         }
 
-        // Gera novo ID
-        usuario.Id = usuarios.Count > 0 ? usuarios.Max(u => u.Id) + 1 : 1;
         usuario.DataCadastro = DateTime.Now;
-
-        usuarios.Add(usuario);
+        _context.Usuarios.Add(usuario);
+        await _context.SaveChangesAsync();
 
         return Ok(new { message = "Usuário cadastrado com sucesso", usuarioId = usuario.Id });
     }
 
-
     [HttpGet("todos")]
-    public IActionResult GetUsuarios()
+    public async Task<IActionResult> GetUsuarios()
     {
+        var usuarios = await _context.Usuarios.ToListAsync();
         var usuariosDto = usuarios.Select(u => new UsuarioDTO
         {
             Id = u.Id,
@@ -79,9 +78,9 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetUsuario(int id)
+    public async Task<IActionResult> GetUsuario(int id)
     {
-        var usuario = usuarios.FirstOrDefault(u => u.Id == id);
+        var usuario = await _context.Usuarios.FindAsync(id);
 
         if (usuario == null)
         {
@@ -103,5 +102,4 @@ public class UsuarioController : ControllerBase
 
         return Ok(usuarioDto);
     }
-
 }
