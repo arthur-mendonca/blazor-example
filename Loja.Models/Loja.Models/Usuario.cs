@@ -1,6 +1,6 @@
 namespace Loja.Models;
 
-public class Usuario
+public class Usuario : IModel
 {
     public int Id { get; set; }
     public string Nome { get; set; } = default!;
@@ -10,6 +10,7 @@ public class Usuario
     public DateTime DataCadastro { get; set; } = DateTime.Now;
     public bool Ativo { get; set; } = true;
 
+    // Endereço para entrega
     public string? Endereco { get; set; }
     public string? Cidade { get; set; }
     public string? CEP { get; set; }

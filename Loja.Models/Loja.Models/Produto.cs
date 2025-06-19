@@ -1,6 +1,6 @@
 namespace Loja.Models;
 
-public class Produto
+public class Produto : IModel
 {
     public int Id { get; set; }
     public string Nome { get; set; } = default!;

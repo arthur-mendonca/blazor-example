@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Loja.Models\Loja.Models\Loja.Models.csproj" />
     <ProjectReference Include="..\..\Loja.DTO\Loja.DTO\Loja.DTO.csproj" />
     <ProjectReference Include="..\..\Loja.Infra\Loja.Infra\Loja.Infra.csproj" />
+    <ProjectReference Include="..\..\Loja.UseCases\Loja.UseCases\Loja.UseCases.csproj" />
   </ItemGroup>
 
 </Project>

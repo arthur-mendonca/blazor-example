@@ -1,6 +1,6 @@
 namespace Loja.Models;
 
-public class ItemPedido
+public class ItemPedido : IModel
 {
     public int Id { get; set; }
     public int PedidoId { get; set; }

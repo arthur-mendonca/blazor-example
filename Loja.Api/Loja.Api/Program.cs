@@ -1,5 +1,8 @@
 using Loja.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using Loja.UseCases.Usuarios;
+using Loja.Infra.Usuarios;
+using Loja.Infra.Pedidos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<LojaDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"),
     b => b.MigrationsAssembly("Loja.Api")));
+
+builder.Services.AddScoped<IPedidoDAO, PedidoDAO>();
+builder.Services.AddScoped<IUsuarioDAO, UsuarioDAO>();
+builder.Services.AddScoped<IUsuarioUseCase, UsuarioUseCase>();
 
 var app = builder.Build();
 

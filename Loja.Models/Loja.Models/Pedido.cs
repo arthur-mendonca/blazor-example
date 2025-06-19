@@ -1,8 +1,7 @@
 ﻿namespace Loja.Models;
 
-public class Pedido
+public class Pedido : IModel
 {
-
     public int Id { get; set; }
     public int UsuarioId { get; set; }
     public Usuario Usuario { get; set; } = default!;
@@ -12,7 +11,7 @@ public class Pedido
     public string? EnderecoEntrega { get; set; }
 
     // Itens do pedido
-    public List<ItemPedido> Itens { get; set; } = new();
+    public List<ItemPedido> Itens { get; set; } = new List<ItemPedido>();
 }
 
 public enum StatusPedido
