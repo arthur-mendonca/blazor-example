@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Loja.DTO;
 using Loja.UseCases.Usuarios;
+using Loja.Api;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -14,14 +15,21 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginDTO loginDto)
+    public async Task<IActionResult> Login(LoginDTO loginDto, TokenService tokenService)
     {
         var resultado = await _usuarioUseCase.LogarAsync(loginDto);
 
         if (!resultado.Sucesso)
             return Unauthorized(new { message = resultado.Mensagens.First().Texto });
 
-        return Ok(new { message = "Login realizado com sucesso", usuario = resultado.Objeto });
+        var token = tokenService.Gerar(resultado.Objeto!);
+
+        return Ok(new
+        {
+            message = "Login realizado com sucesso",
+            usuario = resultado.Objeto,
+            token = token  // ADICIONE ESTA LINHA
+        });
     }
 
     [HttpPost("registro")]

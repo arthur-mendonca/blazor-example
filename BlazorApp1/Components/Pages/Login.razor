@@ -1,0 +1,69 @@
+@page "/login"
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+@using BlazorApp1.Helpers
+@using BlazorApp1.Models
+@using System.Text.Json
+
+<h3>Página de Login de Diagnóstico</h3>
+
+<div style="border: 2px solid red; padding: 15px;">
+    <div class="form-group">
+        <label>Email:</label>
+        <input class="form-control" @bind="Email" />
+    </div>
+    <div class="form-group mt-2">
+        <label>Senha:</label>
+        <input type="password" class="form-control" @bind="Senha" />
+    </div>
+
+    <button type="button" class="btn btn-success mt-3" @onclick="TestarClique">
+        CLIQUE AQUI PRIMEIRO (TESTE DE SANIDADE)
+    </button>
+</div>
+
+@if (!string.IsNullOrEmpty(Mensagem))
+{
+    <div class="alert alert-info mt-3">@Mensagem</div>
+}
+
+
+@code {
+    private string Email { get; set; } = "admin@loja.com";
+    private string Senha { get; set; } = "123456";
+    private string? Mensagem { get; set; }
+
+    private async Task TestarClique()
+    {
+        // Se este alerta aparecer, o Blazor está funcionando.
+        await JS.InvokeVoidAsync("alert", "FINALMENTE! O CLIQUE FUNCIONOU!");
+
+        Mensagem = "O clique foi detectado! Agora tentando fazer o login de verdade...";
+        StateHasChanged();
+
+        try
+        {
+            var loginDto = new LoginDTO { Email = Email, Senha = Senha };
+            var respostaLogin = await ApiBackend.PostAsync<LoginResponseDTO, LoginDTO>("usuarios/login", loginDto);
+
+            if (respostaLogin == null || string.IsNullOrEmpty(respostaLogin.Token))
+            {
+                throw new Exception("API retornou uma resposta vazia ou sem token.");
+            }
+
+            await JS.InvokeVoidAsync("localStorage.setItem", "token", respostaLogin.Token);
+            await JS.InvokeVoidAsync("localStorage.setItem", "user", JsonSerializer.Serialize(respostaLogin.Usuario));
+
+            Mensagem = "Login realizado com SUCESSO! Redirecionando...";
+            StateHasChanged();
+
+            await Task.Delay(1500); // Pausa para você ver a mensagem de sucesso
+            Navigation.NavigateTo("/", true);
+        }
+        catch (Exception ex)
+        {
+            Mensagem = $"DEU MERDA NO LOGIN: {ex.Message}";
+            StateHasChanged();
+        }
+    }
+}

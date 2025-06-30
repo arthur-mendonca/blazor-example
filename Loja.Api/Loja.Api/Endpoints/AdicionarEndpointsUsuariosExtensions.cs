@@ -39,23 +39,26 @@ namespace Loja.Api.Endpoints
                 .RequireAuthorization();
         }
 
-        private static async Task<IResult> Login(LoginDTO loginDto, IUsuarioUseCase usuarioUseCase)
+        private static async Task<IResult> Login(LoginDTO loginDto, IUsuarioUseCase usuarioUseCase, TokenService tokenService)
         {
             try
             {
                 var resultado = await usuarioUseCase.LogarAsync(loginDto);
 
-                return resultado.Sucesso
-                    ? TypedResults.Ok(new { message = "Login realizado com sucesso", usuario = resultado.Objeto })
-                    : TypedResults.Unauthorized();
+                if (!resultado.Sucesso)
+                    return TypedResults.Unauthorized();
+
+                var token = tokenService.Gerar(resultado.Objeto!);
+
+                return TypedResults.Ok(new
+                {
+                    message = "Login realizado com sucesso",
+                    usuario = resultado.Objeto,
+                    token = token
+                });
             }
             catch (Exception ex)
             {
-#if DEBUG
-                var metodo = MethodBase.GetCurrentMethod();
-                if (metodo != null)
-                    Debug.WriteLine($"Exception in {metodo.Name}: {ex.Message}");
-#endif
                 return TypedResults.InternalServerError();
             }
         }

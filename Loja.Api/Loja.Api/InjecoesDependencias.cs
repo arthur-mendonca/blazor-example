@@ -3,6 +3,10 @@ using Loja.Infra.Usuarios;
 using Loja.Infra.Pedidos;
 using Loja.UseCases.Usuarios;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+
 
 namespace Loja.Api
 {
@@ -17,6 +21,47 @@ namespace Loja.Api
                 b => b.MigrationsAssembly("Loja.Api")));
 
             #endregion
+
+            #region CORS
+
+            //     services.AddCors(options =>
+            //   {
+            //       options.AddPolicy("AllowBlazorApp", policy =>
+            //       {
+            //           policy.WithOrigins(
+            //           "https://localhost:7038",
+            //           "http://localhost:5185",
+            //           "https://localhost:5185") // URLs do Blazor
+            //                 .AllowAnyHeader()
+            //                 .AllowAnyMethod()
+            //                 .AllowCredentials();
+            //       });
+            //   });
+
+            #endregion
+
+
+            #region Authentication & Authorization
+
+            services.AddScoped<TokenService>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Config.Instancia.ChavePrivada)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
+            services.AddAuthorization();
+
+            #endregion
+
 
             #region DAOs
 
