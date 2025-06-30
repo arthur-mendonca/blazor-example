@@ -6,292 +6,337 @@
     <title>E-commerce</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-50">
-    <!-- Carrossel -->
-    <div class="relative w-full overflow-hidden h-[500px] bg-gray-800">
-      <div id="carousel-inner" class="relative w-full h-full">
-        <!-- Imagens serão inseridas aqui via JS -->
-      </div>
-      <button
-        id="prev-btn"
-        class="absolute top-1/2 left-0 z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80 transform -translate-y-1/2">
-        &lt;
-      </button>
-      <button
-        id="next-btn"
-        class="absolute top-1/2 right-0 z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80 transform -translate-y-1/2">
-        &gt;
-      </button>
-      <div
-        id="carousel-indicators"
-        class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-        <!-- Indicadores serão inseridos aqui via JS -->
-      </div>
-    </div>
-
-    <!-- Faixa de Frete -->
-    <div class="flex items-center justify-center bg-[#e1f5fd] p-2">
-      <h3 class="text-lg md:text-xl text-center">
-        Frete grátis para compras acima de R$ 300,00
-      </h3>
-      <img
-        class="max-w-[80px] max-h-[90px]"
-        src="./img/bank-logo.png"
-        alt="logo of a bank" />
-    </div>
-
-    <!-- Seção de Categorias (Small Cards) -->
-    <section class="container mx-auto py-5">
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
-        <!-- Card 1 -->
-        <div
-          class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
-          <div class="flex-shrink-0 h-48 flex items-center justify-center">
-            <img
-              class="rounded-t-lg max-h-full max-w-full object-contain"
-              src="./img/laptop.png"
-              alt="Computadores" />
-          </div>
-          <div class="p-4 flex flex-col flex-grow">
-            <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
-              Computadores
-            </h5>
-            <a
-              href="/produtos/computadores"
-              class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver categoria
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div
-          class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
-          <div class="flex-shrink-0 h-48 flex items-center justify-center">
-            <img
-              class="rounded-t-lg max-h-full max-w-full object-contain"
-              src="./img/cel-mockup.png"
-              alt="Celulares" />
-          </div>
-          <div class="p-4 flex flex-col flex-grow">
-            <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
-              Celulares
-            </h5>
-            <a
-              href="/produtos/celulares"
-              class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver categoria
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div
-          class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
-          <div class="flex-shrink-0 h-48 flex items-center justify-center">
-            <img
-              class="rounded-t-lg max-h-full max-w-full object-contain"
-              src="./img/tablet-mockup.png"
-              alt="Tablets" />
-          </div>
-          <div class="p-4 flex flex-col flex-grow">
-            <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
-              Tablets
-            </h5>
-            <a
-              href="/produtos/tablets"
-              class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver categoria
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
-          </div>
-        </div>
-        <!-- Card 4 -->
-        <div
-          class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
-          <div class="flex-shrink-0 h-48 flex items-center justify-center">
-            <img
-              class="rounded-t-lg max-h-full max-w-full object-contain"
-              src="./img/mouse-mockup.png"
-              alt="Acessórios" />
-          </div>
-          <div class="p-4 flex flex-col flex-grow">
-            <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
-              Acessórios
-            </h5>
-            <a
-              href="/produtos/acessorios"
-              class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver categoria
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de Promoções (Big Cards) -->
-    <section class="container mx-auto py-5">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-items-center">
-        <!-- Card 1 -->
-        <div
-          class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-          <a href="#" class="flex-shrink-0"
-            ><img
-              class="w-full h-48 object-cover"
-              src="./img/pais.png"
-              alt="Dia dos Pais"
-          /></a>
-          <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-            <a href="#"
-              ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Dia dos Pais
-              </h5></a
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-sky-500 text-white shadow-md">
+      <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold">Shop+</a>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="hover:text-sky-200">Home</a>
+          <a href="/produtos" class="hover:text-sky-200">Produtos</a>
+          <a
+            href="login.html"
+            id="login-link"
+            class="bg-white text-sky-500 font-bold py-2 px-4 rounded hover:bg-gray-100"
+            >Login</a
+          >
+          <div id="user-info" class="hidden">
+            <span id="user-email"></span>
+            <button
+              id="logout-button"
+              class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+              >Sair</button
             >
-            <p class="mb-3 flex-grow text-base text-gray-700">
-              Promoções de Dia dos Pais
-            </p>
-            <a
-              href="#"
-              class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver promoções
-              <svg
-                class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div
-          class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-          <a href="#" class="flex-shrink-0"
-            ><img
-              class="w-full h-48 object-cover"
-              src="./img/tv.png"
-              alt="Promoções de TVs"
-          /></a>
-          <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-            <a href="#"
-              ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Promoções de TVs
-              </h5></a
-            >
-            <p class="mb-3 flex-grow text-base text-gray-700">
-              Veja TVs em promoção
-            </p>
-            <a
-              href="#"
-              class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver promoções
-              <svg
-                class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
+      </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow">
+      <div id="home-container" class="w-full">
+        <!-- Carrossel -->
+        <div class="relative w-full overflow-hidden h-[500px] bg-gray-800">
+          <div id="carousel-inner" class="relative w-full h-full">
+            <!-- Imagens serão inseridas aqui via JS -->
+          </div>
+          <button
+            id="prev-btn"
+            class="absolute top-1/2 left-0 z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80 transform -translate-y-1/2">
+            &lt;
+          </button>
+          <button
+            id="next-btn"
+            class="absolute top-1/2 right-0 z-10 p-2 mx-4 text-white bg-black/50 rounded-full hover:bg-black/80 transform -translate-y-1/2">
+            &gt;
+          </button>
+          <div
+            id="carousel-indicators"
+            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+            <!-- Indicadores serão inseridos aqui via JS -->
           </div>
         </div>
-        <!-- Card 3 -->
-        <div
-          class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-          <a href="#" class="flex-shrink-0"
-            ><img
-              class="w-full h-48 object-cover"
-              src="./img/eletrodom.png"
-              alt="Eletrodomésticos"
-          /></a>
-          <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-            <a href="#"
-              ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                Eletrodomésticos
-              </h5></a
-            >
-            <p class="mb-3 flex-grow text-base text-gray-700">
-              Veja eletrodomésticos em promoção
-            </p>
-            <a
-              href="#"
-              class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-              >Ver promoções
-              <svg
-                class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-            ></a>
+
+        <!-- Faixa de Frete -->
+        <div class="flex items-center justify-center bg-[#e1f5fd] p-2">
+          <h3 class="text-lg md:text-xl text-center">
+            Frete grátis para compras acima de R$ 300,00
+          </h3>
+          <img
+            class="max-w-[80px] max-h-[90px]"
+            src="./img/bank-logo.png"
+            alt="logo of a bank" />
+        </div>
+
+        <!-- Seção de Categorias (Small Cards) -->
+        <section class="container mx-auto py-5">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
+            <!-- Card 1 -->
+            <div
+              class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
+              <div class="flex-shrink-0 h-48 flex items-center justify-center">
+                <img
+                  class="rounded-t-lg max-h-full max-w-full object-contain"
+                  src="./img/laptop.png"
+                  alt="Computadores" />
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
+                  Computadores
+                </h5>
+                <a
+                  href="/produtos/computadores"
+                  class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver categoria
+                  <svg
+                    class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
+              <div class="flex-shrink-0 h-48 flex items-center justify-center">
+                <img
+                  class="rounded-t-lg max-h-full max-w-full object-contain"
+                  src="./img/cel-mockup.png"
+                  alt="Celulares" />
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
+                  Celulares
+                </h5>
+                <a
+                  href="/produtos/celulares"
+                  class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver categoria
+                  <svg
+                    class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
+              <div class="flex-shrink-0 h-48 flex items-center justify-center">
+                <img
+                  class="rounded-t-lg max-h-full max-w-full object-contain"
+                  src="./img/tablet-mockup.png"
+                  alt="Tablets" />
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
+                  Tablets
+                </h5>
+                <a
+                  href="/produtos/tablets"
+                  class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver categoria
+                  <svg
+                    class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div
+              class="bg-gray-100 h-80 w-full max-w-xs border border-gray-200 rounded-lg shadow-sm flex flex-col">
+              <div class="flex-shrink-0 h-48 flex items-center justify-center">
+                <img
+                  class="rounded-t-lg max-h-full max-w-full object-contain"
+                  src="./img/mouse-mockup.png"
+                  alt="Acessórios" />
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <h5 class="mb-2 text-black text-2xl font-bold tracking-tight">
+                  Acessórios
+                </h5>
+                <a
+                  href="/produtos/acessorios"
+                  class="mt-auto inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver categoria
+                  <svg
+                    class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
           </div>
+        </section>
+
+        <!-- Seção de Promoções (Big Cards) -->
+        <section class="container mx-auto py-5">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-items-center">
+            <!-- Card 1 -->
+            <div
+              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
+              <a href="#" class="flex-shrink-0"
+                ><img
+                  class="w-full h-48 object-cover"
+                  src="./img/pais.png"
+                  alt="Dia dos Pais"
+              /></a>
+              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
+                <a href="#"
+                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                    Dia dos Pais
+                  </h5></a
+                >
+                <p class="mb-3 flex-grow text-base text-gray-700">
+                  Promoções de Dia dos Pais
+                </p>
+                <a
+                  href="#"
+                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver promoções
+                  <svg
+                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
+              <a href="#" class="flex-shrink-0"
+                ><img
+                  class="w-full h-48 object-cover"
+                  src="./img/tv.png"
+                  alt="Promoções de TVs"
+              /></a>
+              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
+                <a href="#"
+                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                    Promoções de TVs
+                  </h5></a
+                >
+                <p class="mb-3 flex-grow text-base text-gray-700">
+                  Veja TVs em promoção
+                </p>
+                <a
+                  href="#"
+                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver promoções
+                  <svg
+                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
+              <a href="#" class="flex-shrink-0"
+                ><img
+                  class="w-full h-48 object-cover"
+                  src="./img/eletrodom.png"
+                  alt="Eletrodomésticos"
+              /></a>
+              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
+                <a href="#"
+                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                    Eletrodomésticos
+                  </h5></a
+                >
+                <p class="mb-3 flex-grow text-base text-gray-700"></p>
+                  Veja eletrodomésticos em promoção
+                </p>
+                <a
+                  href="#"
+                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                  >Ver promoções
+                  <svg
+                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 10">
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
+                ></a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#009FE3] text-white py-6">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+        <div>
+          <h3 class="text-xl font-bold">Shop+</h3>
+          <p class="text-sm mt-2">© 2025 Shop+. Todos os direitos reservados.</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-sm hover:underline mx-2">Política de Privacidade</a>
+          <a href="#" class="text-sm hover:underline mx-2">Termos de Uso</a>
+          <a href="#" class="text-sm hover:underline mx-2">Contato</a>
         </div>
       </div>
-    </section>
+    </footer>
 
     <script src="home.js"></script>
   </body>
