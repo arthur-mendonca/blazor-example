@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
       mensagemDiv.textContent = "Login realizado com sucesso!";
 
       // Esconde o login e mostra a home
-      document.getElementById("login-container").classList.add("hidden");
-      document.getElementById("home-container").classList.remove("hidden");
+      // document.getElementById("login-container").classList.add("hidden");
+      // document.getElementById("home-container").classList.remove("hidden");
 
       initializeCarousel();
     } catch (error) {

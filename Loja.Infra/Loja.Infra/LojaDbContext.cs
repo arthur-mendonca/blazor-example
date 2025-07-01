@@ -29,6 +29,7 @@ public class LojaDbContext : DbContext
         // Configurações do Produto
         modelBuilder.Entity<Produto>(entity =>
         {
+            entity.ToTable("Produto"); // Define explicitamente o nome da tabela como "Produto"
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Nome).IsRequired().HasMaxLength(200);
             entity.Property(e => e.Preco).HasColumnType("decimal(10,2)");

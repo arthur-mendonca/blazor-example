@@ -1,5 +1,9 @@
 using System.Diagnostics;
 using System.Reflection;
+using Loja.Infra.Data;
+using Loja.Models;
+using Loja.UseCases.Produtos;
+using Microsoft.EntityFrameworkCore;
 
 namespace Loja.Api.Endpoints
 {
@@ -43,12 +47,34 @@ namespace Loja.Api.Endpoints
                 .RequireAuthorization();
         }
 
-        private static async Task<IResult> ObterTodosProdutos()
+        private static async Task<IResult> ObterTodosProdutos(LojaDbContext dbContext)
         {
             try
             {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = "Endpoint de produtos em desenvolvimento" });
+                // Query direta via SQL para evitar problemas com o DbSet
+                var produtos = await dbContext.Database.SqlQueryRaw<Produto>("SELECT * FROM Produto").ToListAsync();
+                return TypedResults.Ok(produtos);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                var metodo = MethodBase.GetCurrentMethod();
+                if (metodo != null)
+                    Debug.WriteLine($"Exception in {metodo.Name}: {ex.Message}");
+#endif
+                return TypedResults.InternalServerError();
+            }
+        }
+        private static async Task<IResult> ObterProdutoPorId(int id, LojaDbContext dbContext)
+        {
+            try
+            {
+                // Query direta via SQL para evitar problemas com o DbSet
+                var produto = await dbContext.Database.SqlQueryRaw<Produto>($"SELECT * FROM Produto WHERE Id = {id} LIMIT 1").FirstOrDefaultAsync();
+                if (produto == null)
+                    return TypedResults.NotFound();
+
+                return TypedResults.Ok(produto);
             }
             catch (Exception ex)
             {
@@ -61,12 +87,13 @@ namespace Loja.Api.Endpoints
             }
         }
 
-        private static async Task<IResult> ObterProdutoPorId(int id)
+        private static async Task<IResult> ObterProdutosPorCategoria(string categoria, LojaDbContext dbContext)
         {
             try
             {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = $"Produto {id} em desenvolvimento" });
+                // Query direta via SQL para evitar problemas com o DbSet
+                var produtos = await dbContext.Database.SqlQueryRaw<Produto>($"SELECT * FROM Produto WHERE Categoria = '{categoria}'").ToListAsync();
+                return TypedResults.Ok(produtos);
             }
             catch (Exception ex)
             {
@@ -79,12 +106,12 @@ namespace Loja.Api.Endpoints
             }
         }
 
-        private static async Task<IResult> ObterProdutosPorCategoria(string categoria)
+        private static async Task<IResult> CriarProduto(Produto produto, IProdutoUseCase produtoUseCase)
         {
             try
             {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = $"Produtos da categoria {categoria} em desenvolvimento" });
+                var novoProduto = await produtoUseCase.CriarProduto(produto);
+                return TypedResults.Created($"/api/produtos/{novoProduto.Id}", novoProduto);
             }
             catch (Exception ex)
             {
@@ -97,12 +124,12 @@ namespace Loja.Api.Endpoints
             }
         }
 
-        private static async Task<IResult> CriarProduto()
+        private static async Task<IResult> AlterarProduto(int id, Produto produto, IProdutoUseCase produtoUseCase)
         {
             try
             {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = "Criar produto em desenvolvimento" });
+                await produtoUseCase.AlterarProduto(id, produto);
+                return TypedResults.NoContent();
             }
             catch (Exception ex)
             {
@@ -115,30 +142,12 @@ namespace Loja.Api.Endpoints
             }
         }
 
-        private static async Task<IResult> AlterarProduto(int id)
+        private static async Task<IResult> ExcluirProduto(int id, IProdutoUseCase produtoUseCase)
         {
             try
             {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = $"Alterar produto {id} em desenvolvimento" });
-            }
-            catch (Exception ex)
-            {
-#if DEBUG
-                var metodo = MethodBase.GetCurrentMethod();
-                if (metodo != null)
-                    Debug.WriteLine($"Exception in {metodo.Name}: {ex.Message}");
-#endif
-                return TypedResults.InternalServerError();
-            }
-        }
-
-        private static async Task<IResult> ExcluirProduto(int id)
-        {
-            try
-            {
-                // TODO: Implementar quando criar ProdutoUseCase
-                return TypedResults.Ok(new { message = $"Excluir produto {id} em desenvolvimento" });
+                await produtoUseCase.ExcluirProduto(id);
+                return TypedResults.NoContent();
             }
             catch (Exception ex)
             {

@@ -1,13 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Verifica se o usuário está logado, caso contrário, redireciona para o login
-  const token = localStorage.getItem("token");
-  if (!token) {
-    window.location.href = "/login.html";
-    return; // Interrompe a execução do script se não estiver logado
-  }
+  // 1. Verifica o estado do login e atualiza o cabeçalho
+  updateHeader();
 
+  // 2. Inicializa o carrossel de imagens
   initializeCarousel();
+
+  // 3. Adiciona funcionalidade ao botão de logout
+  const logoutButton = document.getElementById("logout-button");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.reload(); // Recarrega a página para refletir o estado de logout
+    });
+  }
 });
+
+function updateHeader() {
+  const token = localStorage.getItem("token");
+  const userString = localStorage.getItem("user");
+
+  const loginLink = document.getElementById("login-link");
+  const userInfo = document.getElementById("user-info");
+  const userEmail = document.getElementById("user-email");
+
+  if (token && userString) {
+    const user = JSON.parse(userString);
+    // Usuário está logado
+    if (loginLink) loginLink.classList.add("hidden");
+    if (userInfo) userInfo.classList.remove("hidden");
+    if (userEmail) userEmail.textContent = user.email; // Exibe o email do usuário
+  } else {
+    // Usuário não está logado
+    if (loginLink) loginLink.classList.remove("hidden");
+    if (userInfo) userInfo.classList.add("hidden");
+  }
+}
 
 function initializeCarousel() {
   const images = [
@@ -25,21 +53,22 @@ function initializeCarousel() {
   const nextBtn = document.getElementById("next-btn");
   const indicatorsContainer = document.getElementById("carousel-indicators");
 
-  // Limpa conteúdo anterior para evitar duplicação
+  // Verifica se os elementos do carrossel existem antes de continuar
+  if (!carouselInner || !prevBtn || !nextBtn || !indicatorsContainer) {
+    return;
+  }
+
+  // Limpa o conteúdo anterior para evitar duplicatas
   carouselInner.innerHTML = "";
   indicatorsContainer.innerHTML = "";
 
   images.forEach((src, index) => {
-    const imgContainer = document.createElement("div");
-    imgContainer.className =
-      "absolute w-full h-full transition-opacity duration-700 ease-in-out";
-    imgContainer.style.opacity = index === 0 ? "1" : "0";
-
     const img = document.createElement("img");
     img.src = src;
-    img.className = "object-contain w-full h-full mx-auto";
-    imgContainer.appendChild(img);
-    carouselInner.appendChild(imgContainer);
+    img.className =
+      "object-contain w-full h-full mx-auto absolute top-0 left-0 transition-opacity duration-500 ease-in-out";
+    img.style.opacity = index === 0 ? "1" : "0";
+    carouselInner.appendChild(img);
 
     const button = document.createElement("button");
     button.className = `w-3 h-3 rounded-full ${
@@ -49,12 +78,12 @@ function initializeCarousel() {
     indicatorsContainer.appendChild(button);
   });
 
-  const carouselItems = carouselInner.querySelectorAll("div");
+  const carouselImages = carouselInner.querySelectorAll("img");
   const indicatorButtons = indicatorsContainer.querySelectorAll("button");
 
   function updateCarousel() {
-    carouselItems.forEach((item, index) => {
-      item.style.opacity = index === currentIndex ? "1" : "0";
+    carouselImages.forEach((img, index) => {
+      img.style.opacity = index === currentIndex ? "1" : "0";
     });
     indicatorButtons.forEach((button, index) => {
       button.className = `w-3 h-3 rounded-full ${

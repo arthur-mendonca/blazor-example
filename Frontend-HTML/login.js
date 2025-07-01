@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.usuario));
 
-      window.location.href = "/index.html"; // Redireciona para a home
+      window.location.href = "./index.html"; // Redireciona para a home
     } catch (error) {
       mensagemDiv.style.color = "red";
       mensagemDiv.textContent = error.message;

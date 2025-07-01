@@ -1,7 +1,9 @@
 using Loja.Infra.Data;
 using Loja.Infra.Usuarios;
 using Loja.Infra.Pedidos;
+using Loja.Infra.Produtos;
 using Loja.UseCases.Usuarios;
+using Loja.UseCases.Produtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -68,12 +70,14 @@ namespace Loja.Api
             services.AddScoped<IUsuarioDAO, UsuarioDAO>();
             services.AddScoped<IPedidoDAO, PedidoDAO>();
             services.AddScoped<IItemPedidoDAO, ItemPedidoDAO>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             #endregion
 
             #region UseCases
 
             services.AddScoped<IUsuarioUseCase, UsuarioUseCase>();
+            services.AddScoped<IProdutoUseCase, ProdutoUseCase>();
             // services.AddScoped<IPedidoUseCase, PedidoUseCase>(); // Quando criar o PedidoUseCase
 
             #endregion
