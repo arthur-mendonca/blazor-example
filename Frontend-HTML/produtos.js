@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const userEmail = document.getElementById("user-email");
   const logoutButton = document.getElementById("logout-button");
 
-  // --- Lógica de Autenticação da Navbar (similar ao home.js) ---
+  // --- Lógica de Autenticação da Navbar ---
   const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.email) {
     loginLink.classList.add("hidden");

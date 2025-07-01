@@ -12,10 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartContainer = document.getElementById("cart-container");
   const checkoutButton = document.getElementById("checkout-button");
 
-  // Constantes
   const SHIPPING_COST = 0; // Valor do frete
 
-  // --- Lógica de Autenticação da Navbar (similar ao home.js) ---
+  // --- Lógica de Autenticação da Navbar ---
   const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.email) {
     loginLink.classList.add("hidden");
@@ -221,8 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Aqui você implementaria a lógica de checkout real
-    // Por enquanto, apenas simulamos com um alerta
     alert(
       "Pedido finalizado com sucesso! Em um sistema real, você seria redirecionado para a página de pagamento."
     );
