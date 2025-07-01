@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.reload(); // Recarrega a página para refletir o estado de logout
     });
   }
+
+  // 4. Atualiza o contador do carrinho
+  updateCartCount();
 });
 
 function updateHeader() {
@@ -34,6 +37,24 @@ function updateHeader() {
     // Usuário não está logado
     if (loginLink) loginLink.classList.remove("hidden");
     if (userInfo) userInfo.classList.add("hidden");
+  }
+}
+
+// Função para atualizar o contador do carrinho
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
+  if (!cartCount) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Calcular quantidade total de itens
+  const itemCount = cart.reduce((total, item) => total + item.quantidade, 0);
+
+  if (itemCount > 0) {
+    cartCount.textContent = itemCount;
+    cartCount.classList.remove("hidden");
+  } else {
+    cartCount.classList.add("hidden");
   }
 }
 

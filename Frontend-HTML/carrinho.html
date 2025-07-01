@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrinho de Compras</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-sky-500 text-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold">Shop+</a>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="hover:text-sky-200">Home</a>
+          <a href="produtos.html" class="hover:text-sky-200">Produtos</a>
+          <a href="carrinho.html" class="hover:text-sky-200 relative">
+            Carrinho
+            <span
+              id="cart-count"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden"
+              >0</span
+            >
+          </a>
+          <a
+            href="login.html"
+            id="login-link"
+            class="bg-white text-sky-500 font-bold py-2 px-4 rounded hover:bg-gray-100"
+            >Login</a
+          >
+          <div id="user-info" class="hidden">
+            <span id="user-email"></span>
+            <button
+              id="logout-button"
+              class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+              Sair
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold mb-8">Seu Carrinho</h1>
+
+      <div id="empty-cart-message" class="hidden text-center py-10">
+        <p class="text-xl text-gray-600 mb-4">Seu carrinho está vazio</p>
+        <a
+          href="produtos.html"
+          class="bg-sky-500 text-white py-2 px-6 rounded hover:bg-sky-600"
+          >Continuar Comprando</a
+        >
+      </div>
+
+      <div id="cart-container" class="hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-4 px-6 border-b">Produto</th>
+                <th class="py-4 px-6 border-b text-center">Quantidade</th>
+                <th class="py-4 px-6 border-b text-right">Preço</th>
+                <th class="py-4 px-6 border-b text-right">Subtotal</th>
+                <th class="py-4 px-6 border-b text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items">
+              <!-- Os itens do carrinho serão inseridos aqui -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 flex flex-col md:flex-row justify-between items-start">
+          <div class="w-full md:w-1/2 mb-6 md:mb-0 pr-0 md:pr-4">
+            <div class="bg-gray-100 p-6 rounded">
+              <h2 class="text-xl font-bold mb-4">Resumo do Pedido</h2>
+              <div class="flex justify-between py-2 border-b">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">R$ 0,00</span>
+              </div>
+              <div class="flex justify-between py-2 border-b">
+                <span>Frete:</span>
+                <span id="cart-shipping">R$ 0,00</span>
+              </div>
+              <div class="flex justify-between py-2 font-bold text-lg mt-2">
+                <span>Total:</span>
+                <span id="cart-total">R$ 0,00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/2 flex flex-col">
+            <a
+              href="produtos.html"
+              class="bg-gray-200 text-gray-800 py-2 px-4 rounded mb-4 text-center hover:bg-gray-300">
+              Continuar Comprando
+            </a>
+            <button
+              id="checkout-button"
+              class="bg-green-600 text-white py-3 px-6 rounded text-lg font-bold hover:bg-green-700">
+              Finalizar Compra
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#009FE3] text-white py-6 mt-8">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+        <div>
+          <h3 class="text-xl font-bold">Shop+</h3>
+          <p class="text-sm mt-2">
+            © 2025 Shop+. Todos os direitos reservados.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-sm hover:underline mx-2"
+            >Política de Privacidade</a
+          >
+          <a href="#" class="text-sm hover:underline mx-2">Termos de Uso</a>
+          <a href="#" class="text-sm hover:underline mx-2">Contato</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="carrinho.js"></script>
+  </body>
+</html>
