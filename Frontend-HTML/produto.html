@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Produto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <header class="bg-sky-500 text-white shadow-md">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold">Shop+</a>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="hover:text-sky-200">Home</a>
+          <a href="produtos.html" class="hover:text-sky-200">Produtos</a>
+          <a
+            href="login.html"
+            id="login-link"
+            class="bg-white text-sky-500 font-bold py-2 px-4 rounded hover:bg-gray-100"
+            >Login</a
+          >
+          <div id="user-info" class="hidden">
+            <span id="user-email"></span>
+            <button
+              id="logout-button"
+              class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+              Sair
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow">
+      <div class="bg-[#e1f5fd] w-full">
+        <div class="container mx-auto items-center flex flex-col min-h-screen">
+          <div
+            id="produto-container"
+            class="my-10 mx-8 lg:mx-0 flex-grow p-10 bg-white border-2 border-[#009FE3] rounded-xl">
+            <h1 class="text-3xl font-bold mb-4">Detalhes do Produto</h1>
+            <p id="produto-nome" class="mb-2 text-xl"></p>
+
+            <div class="mb-4 p-10 rounded-xl bg-[#009FE3] flex justify-center">
+              <img
+                id="produto-imagem"
+                src=""
+                alt="Imagem do produto"
+                class="w-full max-w-md mx-auto object-contain max-h-80" />
+            </div>
+
+            <div class="mb-4">
+              <h2 class="text-2xl font-semibold mb-2">Descrição</h2>
+              <p id="produto-descricao"></p>
+            </div>
+
+            <div class="mb-4">
+              <h2 class="text-2xl font-semibold mb-2">Preço</h2>
+              <p
+                id="produto-preco"
+                class="text-xl text-green-600 font-bold"></p>
+            </div>
+
+            <div>
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#009FE3] text-white py-6">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+        <div>
+          <h3 class="text-xl font-bold">Shop+</h3>
+          <p class="text-sm mt-2">
+            © 2025 Shop+. Todos os direitos reservados.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-sm hover:underline mx-2"
+            >Política de Privacidade</a
+          >
+          <a href="#" class="text-sm hover:underline mx-2">Termos de Uso</a>
+          <a href="#" class="text-sm hover:underline mx-2">Contato</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="produto.js"></script>
+  </body>
+</html>

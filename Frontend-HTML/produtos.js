@@ -66,21 +66,27 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    productsGrid.innerHTML = "";
+    productsGrid.innerHTML = ""; // Limpa a área antes de adicionar os novos produtos
     products.forEach((product) => {
       const card = `
         <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
-          <img src="./${product.imagem}" alt="${
+          <a href="produto.html?id=${product.id}">
+            <img src="./${product.imagem}" alt="${
         product.nome
       }" class="w-full h-48 object-cover">
+          </a>
           <div class="p-4">
-            <h3 class="text-lg font-semibold">${product.nome}</h3>
-            <p class="text-gray-600 mt-1">${product.descricao}</p>
+            <a href="produto.html?id=${product.id}" class="hover:text-sky-500">
+              <h3 class="text-lg font-semibold">${product.nome}</h3>
+            </a>
+            <p class="text-gray-600 mt-1">${product.descricao || ""}</p>
             <div class="mt-4 flex justify-between items-center">
               <span class="text-xl font-bold text-sky-500">R$ ${product.preco.toFixed(
                 2
               )}</span>
-              <a href="#" class="bg-sky-500 text-white font-bold py-2 px-4 rounded hover:bg-sky-600">Comprar</a>
+              <a href="produto.html?id=${
+                product.id
+              }" class="bg-sky-500 text-white font-bold py-2 px-4 rounded hover:bg-sky-600">Ver detalhes</a>
             </div>
           </div>
         </div>
