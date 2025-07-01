@@ -9,14 +9,19 @@
   <body class="bg-gray-50 flex flex-col min-h-screen">
     <!-- Navbar -->
     <header class="bg-sky-500 text-white shadow-md">
-      <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center">
         <a href="index.html" class="text-2xl font-bold">Shop+</a>
         <div class="flex items-center space-x-4">
           <a href="index.html" class="hover:text-sky-200">Home</a>
           <a href="produtos.html" class="hover:text-sky-200">Produtos</a>
           <a href="carrinho.html" class="hover:text-sky-200 relative">
             Carrinho
-            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            <span
+              id="cart-count"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden"
+              >0</span
+            >
           </a>
           <a
             href="login.html"
@@ -28,9 +33,9 @@
             <span id="user-email"></span>
             <button
               id="logout-button"
-              class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-              >Sair</button
-            >
+              class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+              Sair
+            </button>
           </div>
         </div>
       </nav>
@@ -206,136 +211,23 @@
             </div>
           </div>
         </section>
-
-        <!-- Seção de Promoções (Big Cards) -->
-        <section class="container mx-auto py-5">
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-items-center">
-            <!-- Card 1 -->
-            <div
-              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-              <a href="#" class="flex-shrink-0"
-                ><img
-                  class="w-full h-48 object-cover"
-                  src="./img/pais.png"
-                  alt="Dia dos Pais"
-              /></a>
-              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-                <a href="#"
-                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                    Dia dos Pais
-                  </h5></a
-                >
-                <p class="mb-3 flex-grow text-base text-gray-700">
-                  Promoções de Dia dos Pais
-                </p>
-                <a
-                  href="#"
-                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-                  >Ver promoções
-                  <svg
-                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10">
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-                ></a>
-              </div>
-            </div>
-            <!-- Card 2 -->
-            <div
-              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-              <a href="#" class="flex-shrink-0"
-                ><img
-                  class="w-full h-48 object-cover"
-                  src="./img/tv.png"
-                  alt="Promoções de TVs"
-              /></a>
-              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-                <a href="#"
-                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                    Promoções de TVs
-                  </h5></a
-                >
-                <p class="mb-3 flex-grow text-base text-gray-700">
-                  Veja TVs em promoção
-                </p>
-                <a
-                  href="#"
-                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-                  >Ver promoções
-                  <svg
-                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10">
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-                ></a>
-              </div>
-            </div>
-            <!-- Card 3 -->
-            <div
-              class="bg-gray-100 h-[400px] w-full max-w-md border border-gray-300 rounded-lg shadow-sm overflow-hidden flex flex-col">
-              <a href="#" class="flex-shrink-0"
-                ><img
-                  class="w-full h-48 object-cover"
-                  src="./img/eletrodom.png"
-                  alt="Eletrodomésticos"
-              /></a>
-              <div class="p-5 bg-zinc-200 flex flex-col flex-grow">
-                <a href="#"
-                  ><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                    Eletrodomésticos
-                  </h5></a
-                >
-                <p class="mb-3 flex-grow text-base text-gray-700"></p>
-                  Veja eletrodomésticos em promoção
-                </p>
-                <a
-                  href="#"
-                  class="mt-auto block text-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800"
-                  >Ver promoções
-                  <svg
-                    class="rtl:rotate-180 inline w-3.5 h-3.5 ml-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10">
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9" /></svg
-                ></a>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-[#009FE3] text-white py-6">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <div>
           <h3 class="text-xl font-bold">Shop+</h3>
-          <p class="text-sm mt-2">© 2025 Shop+. Todos os direitos reservados.</p>
+          <p class="text-sm mt-2">
+            © 2025 Shop+. Todos os direitos reservados.
+          </p>
         </div>
         <div class="mt-4 md:mt-0">
-          <a href="#" class="text-sm hover:underline mx-2">Política de Privacidade</a>
+          <a href="#" class="text-sm hover:underline mx-2"
+            >Política de Privacidade</a
+          >
           <a href="#" class="text-sm hover:underline mx-2">Termos de Uso</a>
           <a href="#" class="text-sm hover:underline mx-2">Contato</a>
         </div>

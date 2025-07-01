@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    productsGrid.innerHTML = ""; // Limpa a área antes de adicionar os novos produtos
+    productsGrid.innerHTML = "";
     products.forEach((product) => {
       const card = `
         <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">

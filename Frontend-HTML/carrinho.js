@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkoutButton = document.getElementById("checkout-button");
 
   // Constantes
-  const SHIPPING_COST = 0; // Valor do frete (gratuito por enquanto)
+  const SHIPPING_COST = 0; // Valor do frete
 
   // --- Lógica de Autenticação da Navbar (similar ao home.js) ---
   const user = JSON.parse(localStorage.getItem("user"));

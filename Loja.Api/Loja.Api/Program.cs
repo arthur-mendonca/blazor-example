@@ -60,35 +60,68 @@ void SeedProdutos(LojaDbContext dbContext)
         // Garantir que o banco de dados existe
         dbContext.Database.EnsureCreated();
 
-        // Criar a tabela Produto manualmente, se não existir
-        dbContext.Database.ExecuteSqlRaw(@"
-            CREATE TABLE IF NOT EXISTS Produto (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                Nome TEXT NOT NULL,
-                Preco DECIMAL(10,2) NOT NULL,
-                Imagem TEXT,
-                Categoria TEXT NOT NULL,
-                Descricao TEXT,
-                EstoqueQuantidade INTEGER NOT NULL,
-                Ativo INTEGER NOT NULL
-            )");
-
-        // Verificar se já existem produtos
-        var count = dbContext.Database.ExecuteSqlRaw("SELECT COUNT(*) FROM Produto");
+        // Verificar se já existem produtos de forma correta
+        var produtosExistentes = dbContext.Produtos.Any();
 
         // Se não há produtos, inserir dados iniciais
-        if (count == 0)
+        if (!produtosExistentes)
         {
-            // Inserir diretamente via SQL para evitar problemas com o DbSet
-            dbContext.Database.ExecuteSqlRaw(@"
-                INSERT INTO Produto (Nome, Preco, Imagem, Categoria, Descricao, EstoqueQuantidade, Ativo)
-                VALUES 
-                ('Notebook Dell XPS 15', 7999.99, '/img/laptop.png', 'Computador', 'Notebook premium com tela 4K, Intel Core i7, 16GB RAM, SSD 512GB', 10, 1),
-                ('iPhone 15 Pro', 8499.90, '/img/cel-mockup.png', 'Celular', 'Smartphone com câmera de 48MP, chip A17 Pro, 256GB de armazenamento', 15, 1),
-                ('iPad Pro M2', 9799.00, '/img/tablet-mockup.png', 'Tablet', 'Tablet com chip M2, tela Liquid Retina XDR de 11 polegadas, 128GB', 8, 1),
-                ('Mouse Logitech MX Master 3', 699.90, '/img/mouse-mockup.png', 'Acessorio', 'Mouse sem fio com sensor Darkfield de 4000 DPI, conexão Bluetooth', 30, 1),
-                ('Teclado Mecânico Keychron K2', 799.90, '/img/pais.png', 'Acessorio', 'Teclado mecânico sem fio com switches Gateron Brown, layout ABNT2', 12, 1)
-            ");
+            var produtos = new List<Produto>
+            {
+                new Produto
+                {
+                    Nome = "Notebook Dell XPS 15",
+                    Preco = 7999.99M,
+                    Imagem = "/img/laptop.png",
+                    Categoria = "Computador",
+                    Descricao = "Notebook premium com tela 4K, Intel Core i7, 16GB RAM, SSD 512GB",
+                    EstoqueQuantidade = 10,
+                    Ativo = true
+                },
+                new Produto
+                {
+                    Nome = "iPhone 15 Pro",
+                    Preco = 8499.90M,
+                    Imagem = "/img/cel-mockup.png",
+                    Categoria = "Celular",
+                    Descricao = "Smartphone com câmera de 48MP, chip A17 Pro, 256GB de armazenamento",
+                    EstoqueQuantidade = 15,
+                    Ativo = true
+                },
+                new Produto
+                {
+                    Nome = "iPad Pro M2",
+                    Preco = 9799.00M,
+                    Imagem = "/img/tablet-mockup.png",
+                    Categoria = "Tablet",
+                    Descricao = "Tablet com chip M2, tela Liquid Retina XDR de 11 polegadas, 128GB",
+                    EstoqueQuantidade = 8,
+                    Ativo = true
+                },
+                new Produto
+                {
+                    Nome = "Mouse Logitech MX Master 3",
+                    Preco = 699.90M,
+                    Imagem = "/img/mouse-mockup.png",
+                    Categoria = "Acessorio",
+                    Descricao = "Mouse sem fio com sensor Darkfield de 4000 DPI, conexão Bluetooth",
+                    EstoqueQuantidade = 30,
+                    Ativo = true
+                },
+                new Produto
+                {
+                    Nome = "Teclado Mecânico Keychron K2",
+                    Preco = 799.90M,
+                    Imagem = "/img/pais.png",
+                    Categoria = "Acessorio",
+                    Descricao = "Teclado mecânico sem fio com switches Gateron Brown, layout ABNT2",
+                    EstoqueQuantidade = 12,
+                    Ativo = true
+                }
+            };
+
+            dbContext.Produtos.AddRange(produtos);
+            dbContext.SaveChanges();
 
             Console.WriteLine("Produtos de exemplo adicionados com sucesso!");
         }
